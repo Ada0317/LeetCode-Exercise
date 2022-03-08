@@ -1,0 +1,107 @@
+syntax = "proto3";
+
+package protos;
+option go_package = "/;protos";
+//option php_meatadata_namespace = "Opts/Order/GPBMetadata";
+
+service Snowflake {
+  rpc Generate(SnowflakeRequest) returns (SnowflakeResponse) {}
+}
+
+message SnowflakeRequest {
+  int64 node_id = 1; // 1:order，2:trade
+  int32 num = 2;
+}
+
+message SnowflakeResponse {
+  repeated int64 ids = 1;
+}
+
+service Trades {
+  rpc Order(TradesOrderRequest) returns (TradesOrderResponse) {}
+  rpc Orders(TradesOrdersRequest) returns (TradesOrdersResponse) {}
+  rpc CancelOrder(TradesCancelOrderRequest) returns (TradesCancelOrderResponse) {}
+  rpc CancelBatchOrders(TradesCancelBatchOrdersRequest) returns (TradesCancelBatchOrdersResponse) {}
+}
+
+//下单请求
+message TradesOrderRequest {
+  int64 account_id = 1; //用户账号id
+  int32 trade_type = 2; // 1: 现货交易 2: 杠杆交易
+  //  string instrument_id = 3; // 交易货币对  BTC_USDT_20200514_55000
+  int32  CurrencyId = 3;    // 交易对象币ID
+  int32  CurrencyTradeId = 4;//交易计价币ID   通常是104(USTD)
+  int32 type = 5; // // 1:开多 2:开空 3:平多 4:平空  (现货为 1 3)
+  int32 order_type = 6; // 1：限价 2：市价
+  string price = 7; //委托价格
+  string size = 8; //下单数量    //如果是杠杆订单 下单数量应该是乘以杠杆倍数的数量 现货就直接是下单数量
+  int32 leverage = 9; //杠杆倍数
+  string source = 10;  //下单来源  API,PCWEB,MOBILE
+  bool no_limit_length = 11; //平仓后门 字段
+  bool wash_only = 12;
+  string client_oid = 13; // 唯一id
+  string ExerciseDate = 14;    //行使日期 (下单时间） 20200514
+  string tradePair = 15;    //交易对 USDT_BTC
+}
+
+//下单响应
+message TradesOrderResponse {
+  string client_oid = 1;
+  int32 error_code = 2;
+  string error_message = 3;
+}
+
+message TradesOrdersRequest {
+  int64 account_id = 1;
+  repeated OrderData order_data = 2; //OrderData数组
+
+  int32  CurrencyId = 3;
+  int32  CurrencyTradeId = 4;
+  string source = 5;
+  bool no_limit_length = 6;
+  bool wash_only = 7;
+  string ExerciseDate = 8;    //行使日期 (下单时间）
+  string tradePair = 9;    //交易对 USDT_BTC
+}
+
+message OrderData {
+  string client_oid = 1;
+  string size = 2;
+  int32 type = 3;
+  int32 order_type = 4;
+  string price = 5;
+}
+
+message TradesOrdersResponse {
+  repeated string client_oids = 1;
+  int32 error_code = 2;
+  string error_message = 3;
+}
+
+message TradesCancelOrderRequest {
+  int64 account_id = 1;
+  string client_oid = 2;
+  int32  CurrencyId = 3;
+  int32  TradeCurrencyId = 4;
+  string source = 5;
+}
+
+message TradesCancelOrderResponse {
+  string client_oid = 1;
+  int32 error_code = 2;
+  string error_message = 3;
+}
+
+message TradesCancelBatchOrdersRequest {
+  int64 account_id = 1;
+  repeated string client_oids = 2;
+  int32  CurrencyId = 3;
+  int32  TradeCurrencyId = 4;
+  string source = 5;
+}
+
+message TradesCancelBatchOrdersResponse {
+  repeated string client_oids = 1;
+  int32 error_code = 2;
+  string error_message = 3;
+}
