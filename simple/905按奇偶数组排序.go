@@ -5,15 +5,15 @@ func sortArrayByParity(nums []int) []int {
 	start, end := 0, len(nums)-1
 	tempArr := make([]int, len(nums))
 	for i := 0; i < len(nums); i++ {
-		if start < end {
-			if nums[i]%2 == 0 {
-				tempArr[start] = nums[i]
-				start++
-			} else {
-				tempArr[end] = nums[i]
-				end--
-			}
+		//if start < end {
+		if nums[i]%2 == 0 {
+			tempArr[start] = nums[i]
+			start++
+		} else {
+			tempArr[end] = nums[i]
+			end--
 		}
+		//}
 	}
 	return tempArr
 }
