@@ -1,4 +1,4 @@
-package main
+package string
 
 import "fmt"
 
@@ -13,6 +13,9 @@ func main() {
 	space := replaceSpace("法国 的风格 happy.")
 	fmt.Println(space)
 }
+
+/*时间复杂度：O(n)。遍历字符串 s 一遍。
+空间复杂度：O(n)。额外创建字符数组*/
 
 func replaceSpace(s string) string { //append 函数 追加切片的时候 要加上 ...
 	runes := []rune(s)
