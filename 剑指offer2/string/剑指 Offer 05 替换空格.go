@@ -28,5 +28,5 @@ func replaceSpace(s string) string { //append 函数 追加切片的时候 要�
 		buf = append(buf, v)
 	}
 	s = string(buf)
-	return s
+	return sddd
 }
