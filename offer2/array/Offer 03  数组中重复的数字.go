@@ -24,7 +24,7 @@ func main() {
 func findRepeatNumber01(nums []int) int {
 	m := make(map[int]int)
 	for k, v := range nums {
-		if _, exist := m[k]; !exist {
+		if _, exist := m[v]; !exist {
 			m[k] += 1
 		} else {
 			return v

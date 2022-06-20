@@ -28,5 +28,12 @@ func replaceSpace(s string) string { //append 函数 追加切片的时候 要�
 		buf = append(buf, v)
 	}
 	s = string(buf)
-	return sddd
+	return s
 }
+
+/*
+tips：使用append往切片中追加另一个切片的时候 要在第二个参数(追加的切片)后加上...  否则语法错误
+	rune类型是int32的别名 相当于4个byte
+	byte类型是uint8的别名
+
+*/
