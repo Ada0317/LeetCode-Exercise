@@ -2,7 +2,6 @@ package tree
 
 import (
 	"container/list"
-	"fmt"
 )
 
 type TreeNode struct {
@@ -17,7 +16,6 @@ func PreOrder(node *TreeNode, arr *[]int) {
 		PreOrder(node.Left, arr)
 
 		PreOrder(node.Right, arr)
-		fmt.Println()
 	} else {
 		return
 	}
@@ -97,6 +95,28 @@ func LevelTraversal(root *TreeNode) {
 	for l.Len() != 0 {
 		//出队一个
 		front := l.Front()
+		node := front.Value.(*TreeNode)
+		arr = append(arr, node.Val)
+
+		if node.Left != nil {
+			l.PushBack(node.Left)
+		}
+
+		if node.Right != nil {
+			l.PushBack(node.Right)
+		}
+	}
+}
+
+// 深度优先遍历  前序
+
+func DepthTraversal(root *TreeNode) {
+	arr := make([]int, 0)
+	l := list.New()
+	l.PushBack(root)
+	for l.Len() != 0 {
+		//出栈
+		front := l.Back()
 		node := front.Value.(*TreeNode)
 		arr = append(arr, node.Val)
 
