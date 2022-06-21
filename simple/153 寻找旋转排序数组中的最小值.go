@@ -33,3 +33,18 @@ func findMin(nums []int) int {
 //给你一个可能存在   重复   元素值的数组 nums ，它原来是一个升序排列的数组，并按上述情形进行了多次旋转。请你找出并返回数组中的 最小元素 。
 //
 //你必须尽可能减少整个过程的操作步骤。
+
+func findMin2(nums []int) int { //这个题目于之前的题目的差距在于元素可以重复
+	low, high := 0, len(nums)-1
+	for low < high {
+		pivot := low + (high-low)/2
+		if nums[pivot] < nums[high] {
+			high = pivot
+		} else if nums[pivot] > nums[high] {
+			low = pivot + 1
+		} else {
+			high--
+		}
+	}
+	return nums[low]
+}
