@@ -75,7 +75,7 @@ func MidOrderTraversal(root *TreeNode) []int {
 		} else {
 			back := l.Back()
 			l.Remove(back)
-			node, ok := back.Value.(TreeNode)
+			node, ok := back.Value.(*TreeNode)
 			if ok != true {
 				panic("转换出错")
 			}
@@ -117,15 +117,17 @@ func DepthTraversal(root *TreeNode) {
 	for l.Len() != 0 {
 		//出栈
 		front := l.Back()
+		l.Remove(front)
 		node := front.Value.(*TreeNode)
-		arr = append(arr, node.Val)
 
-		if node.Left != nil {
-			l.PushBack(node.Left)
-		}
+		arr = append(arr, node.Val)
 
 		if node.Right != nil {
 			l.PushBack(node.Right)
+		}
+
+		if node.Left != nil {
+			l.PushBack(node.Left)
 		}
 	}
 }
