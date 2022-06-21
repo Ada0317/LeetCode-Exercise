@@ -78,9 +78,9 @@ func method02(matrix [][]int, target int) bool {
 		return false
 	}
 	rows := len(matrix)
-	clowns := len(matrix[0])
+	column := len(matrix[0])
 	i := 0
-	j := clowns - 1
+	j := column - 1
 	for i < rows && j >= 0 {
 		num := matrix[i][j]
 		if target < num {
