@@ -67,3 +67,48 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 
 	return head
 }
+
+//优化的方法 减少创建列表
+func addTwoNumbersNew(l1 *ListNode, l2 *ListNode) *ListNode {
+	carry := 0
+	head := l1
+	var pre *ListNode
+
+	for l1 != nil && l2 != nil {
+		temp := carry + l1.Val + l2.Val
+		if temp >= 10 {
+			l1.Val = temp - 10
+			carry = 1
+		} else {
+			l1.Val = temp
+			carry = 0
+		}
+
+		pre = l1
+		l1 = l1.Next
+		l2 = l2.Next
+	}
+
+	if l2 != nil {
+		pre.Next = l2 //重新调整l1的指向
+		l1 = pre.Next
+	}
+
+	for l1 != nil {
+		temp := carry + l1.Val
+		if temp >= 10 {
+			l1.Val = temp - 10
+			carry = 1
+		} else {
+			l1.Val = temp
+			carry = 0
+		}
+		pre = l1
+		l1 = l1.Next
+	}
+
+	if carry > 0 {
+		pre.Next = &ListNode{Val: 1}
+	}
+	return head
+}
