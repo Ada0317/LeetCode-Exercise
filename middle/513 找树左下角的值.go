@@ -1,5 +1,7 @@
 package middle
 
+import "strings"
+
 /*给定一个二叉树的 根节点 root，请找出该二叉树的 最底层 最左边 节点的值。
 假设二叉树中至少有一个节点。
 输入: root = [2,1,3]
@@ -53,6 +55,6 @@ func findBottomLeftValue2(root *TreeNode) int {
 
 		que = que[1:]
 	}
-
+	strings.HasPrefix()
 	return res
 }
