@@ -2,14 +2,13 @@ package _Test
 
 import (
 	"fmt"
-	"strings"
 	"testing"
 )
 
 func Test_02(t *testing.T) {
 	arr := []int{0}
 	s := "dfs"
-	strings.HasPrefix()
+
 	fmt.Println(s[1:3])
 	fmt.Println(arr[0])
 	fmt.Println(arr[1:])
