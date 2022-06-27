@@ -12,6 +12,7 @@ func Test_02(t *testing.T) {
 	fmt.Println(s[1:3])
 	fmt.Println(arr[0])
 	fmt.Println(arr[1:])
+
 }
 func TestName01(t *testing.T) {
 	//left1 := tree.TreeNode{
