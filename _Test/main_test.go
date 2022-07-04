@@ -6,12 +6,8 @@ import (
 )
 
 func Test_02(t *testing.T) {
-	arr := []int{0}
-	s := "dfs"
 
-	fmt.Println(s[1:3])
-	fmt.Println(arr[0])
-	fmt.Println(arr[1:])
+	//fmt.Println(arr[1:])
 
 }
 func TestName01(t *testing.T) {
