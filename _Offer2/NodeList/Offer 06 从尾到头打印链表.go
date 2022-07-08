@@ -25,7 +25,6 @@ func main() {
 	n1 := NewNodeList(n2, 1)
 
 	fmt.Println(reversePrint(n1))
-
 }
 
 func reversePrint(head *ListNode) []int {
